@@ -22,14 +22,14 @@ const Login = () => {
 
   return (
     <div
-      className={`flex relative items-center justify-center w-full h-screen text-white`}
+      className={`bg-gradient-to-tl from-slate-900 to-slate-950 flex relative items-center justify-center w-full h-screen text-white overflow-hidden`}
     >
       
-      <img 
+      {/* <img 
         src={backgroundImg} 
-        className='w-full h-full absolute z-0 top-0 left-0 brightness-50'
+        className='w-full h-full z-0 top-0 left-0 brightness-50 absolute -inset-4 blur-xl scale-125 object-cover'
         alt="" 
-      />
+      /> */}
 
       <form
         className='w-96 p-8 h-[30rem] flex flex-col gap-10 bg-white/30 border-2 border-white/50 backdrop-blur-lg rounded-md z-10'
@@ -126,14 +126,14 @@ const Login = () => {
               >
                 <input
                   type="checkbox"
-                  className='w-4 h-4 border-white border-2 rounded-md accent-sky-500'
+                  className='w-4 h-4 border-white border-2 rounded-md accent-slate-900'
                   value={rememberMe}
                   onChange={() => setRememberMe(!rememberMe)}
                 />  
                 <p>remember me</p>
               </div>
               <p
-                className='text-xs hover:text-sky-400 duration-200'
+                className='text-xs hover:text-slate-900 duration-200'
               >
                 Forgot your password? 
               </p>
@@ -146,7 +146,7 @@ const Login = () => {
           className='flex flex-col gap-2 w-full h-fit'
         >
           <button
-            className='p-2 rounded-md shadow-slate-500 font-semibold duration-200 hover:text-slate-300 hover:bg-sky-600 active:bg-sky-700 shadow w-full bg-sky-500'
+            className='p-2 rounded-md shadow-slate-500 font-semibold duration-200 hover:text-slate-300 hover:bg-slate-800 active:bg-slate-700 shadow w-full bg-slate-900'
             type='submit'
           >
             Sign In 
@@ -155,7 +155,7 @@ const Login = () => {
             className='w-full flex items-center justify-center'
           >
             <Link
-              className='text-xs font-medium hover:text-sky-400'
+              className='text-xs font-medium hover:text-slate-900'
               to={"/Register"}
             >
               Don't have an account? Sign Up 

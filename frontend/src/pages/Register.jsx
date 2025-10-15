@@ -24,14 +24,14 @@ const Register = () => {
 
   return (
     <div
-      className={`flex relative items-center justify-center w-full h-screen text-white`}
+      className={`bg-gradient-to-tl from-slate-900 to-slate-950 flex relative items-center justify-center w-full h-screen text-white overflow-hidden `}
     >
       
-      <img 
+      {/* <img 
         src={backgroundImg} 
-        className='w-full h-full absolute z-0 top-0 left-0 brightness-50'
+        className='w-full h-full z-0 top-0 left-0 brightness-50 absolute -inset-4 blur-xl scale-125 object-cover'
         alt="" 
-      />
+      /> */}
 
       <form
         className='w-96 p-8 min-h-[30rem] h-fit flex flex-col gap-10 bg-white/30 border-2 border-white/50 backdrop-blur-lg rounded-md z-10'
@@ -50,7 +50,7 @@ const Register = () => {
           <p
             className='text-sm font-semibold '
           >
-            Fill in your details to sign into your account and learn your topics
+            Fill in your details to create a new account and learn new topics
           </p>
         </div>
 
@@ -79,7 +79,7 @@ const Register = () => {
               type="text"
               placeholder='Enter an Name...'
               className='pl-10 p-2 rounded-md placeholder:text-white/70 border-2 outline-none border-white/50 bg-white/20 text-sm'
-             />
+            />
           </div>
 
           {/* email */}
@@ -195,7 +195,7 @@ const Register = () => {
           className=' flex flex-col gap-2 w-full h-fit'
         >
           <button
-            className='p-2 rounded-md shadow-slate-500 font-semibold duration-200 hover:text-slate-300 hover:bg-sky-600 active:bg-sky-700 shadow w-full bg-sky-500'
+            className='p-2 rounded-md shadow-slate-500 font-semibold duration-200 hover:text-slate-300 hover:bg-slate-800 active:bg-slate-700 shadow w-full bg-slate-900'
             type='submit'
           >
             Sign In 
@@ -204,7 +204,7 @@ const Register = () => {
             className='w-full flex items-center justify-center'
           >
             <Link
-              className='text-xs font-medium hover:text-sky-400'
+              className='text-xs font-medium duration-200 hover:text-slate-900'
               to={"/Login"}
             >
               Already have an account? Sign In 
