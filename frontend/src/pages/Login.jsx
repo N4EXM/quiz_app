@@ -91,7 +91,7 @@ const Login = () => {
               htmlFor="password"
               className='text-sm font-semibold pl-2'  
             >
-              Email:
+              Password:
             </label>
             <input
               value={password}

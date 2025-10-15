@@ -4,6 +4,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Login from './pages/Login'
+import Register from './pages/Register'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -19,7 +20,10 @@ function App() {
               path='/Login'
               element={<Login/>}
             />
-
+            <Route
+              path='/Register'
+              element={<Register/>}
+            />
           </Routes>
         </BrowserRouter>
       </div>
