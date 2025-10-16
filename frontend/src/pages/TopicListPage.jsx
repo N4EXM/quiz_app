@@ -1,8 +1,9 @@
 import React from 'react'
+import Layout from '../components/Layout'
 
 const TopicListPage = () => {
   return (
-    <div>TopicListPage</div>
+    <Layout></Layout>
   )
 }
 
