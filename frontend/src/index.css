@@ -155,6 +155,8 @@
   font-display: swap;
 }
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 /* Set Poppins as the default font family */
 @theme {
   --font-sans: 'Poppins', ui-sans-serif, system-ui;
