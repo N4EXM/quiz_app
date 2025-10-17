@@ -21,7 +21,7 @@ function App() {
   return (
     <>
       <div
-        className='text-slate-800 dark:text-slate-200  font-poppins w-full min-h-screen h-full relative'
+        className='text-slate-800 dark:text-slate-200   font-poppins w-full min-h-screen h-full relative'
       >
         <BrowserRouter>
           <Routes>

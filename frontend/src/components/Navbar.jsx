@@ -3,6 +3,7 @@ import { useAuth } from './../context/AuthContext'
 import defaultUserImg from '../assets/images/userDefault.png'
 import UserMenu from './UserMenu'
 import { useTheme } from '../context/ThemeContext'
+import SettingsModal from './SettingsModal'
 
 const Navbar = () => {
 
@@ -12,6 +13,8 @@ const Navbar = () => {
 
   // toggles
   const [userMenuToggle, setUserMenuToggle] = useState(false)
+  const [toggleSettings, setToggleSettings] = useState(false)
+
 
   return (
     <div
@@ -84,9 +87,13 @@ const Navbar = () => {
         <UserMenu
           userMenuToggle={userMenuToggle}
           setUserMenuToggle={setUserMenuToggle}
+          setToggleSettings={setToggleSettings}
         />
       </div>
-
+      <SettingsModal
+        toggleSettings={toggleSettings}
+        setToggleSettings={setToggleSettings}
+      />
     </div>
   )
 }
