@@ -20,7 +20,8 @@ export const AuthProvider = ({ children }) => {
     const [isLoading, setIsLoading] = useState(false)
     // const [user, setUser] = useState(null)
     const [user, setUser] = useState({
-        name: "John Doe",
+        firstName: "John",
+        lastName: "Doe",
         email: "johnDoe@example.com",
         profileImg: userImg,
     })

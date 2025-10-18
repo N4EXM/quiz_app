@@ -21,7 +21,7 @@ const UserMenu = ({ userMenuToggle, setUserMenuToggle, setToggleSettings }) => {
   return (
     <>
       <div
-        className={`absolute top-12 right-0 w-64 min-h-40 h-fit pb-o.5 flex-col rounded-sm items-start justify-start shadow-slate-800 border-slate-100 border-2 dark:border-slate-800 dark:bg-slate-900 shadow dark:shadow-none ${userMenuToggle ? "flex" : "hidden"}`}
+        className={`absolute top-12 right-0 w-64 min-h-40 h-fit pb-o.5 flex-col rounded-sm items-start justify-start shadow-slate-800 border-slate-100 border-2 dark:border-slate-800 dark:bg-slate-900 bg-slate-100 shadow dark:shadow-none ${userMenuToggle ? "flex" : "hidden"}`}
         ref={checkClickRef}
       >
 
@@ -46,7 +46,11 @@ const UserMenu = ({ userMenuToggle, setUserMenuToggle, setToggleSettings }) => {
             >
               {
                 user !== null
-                ? user.name
+                ? <span
+                    className='flex flex-row items-center gap-1'
+                  >
+                     {user.firstName} {user.lastName}
+                  </span>
                 : "Guest"
               }
             </p>

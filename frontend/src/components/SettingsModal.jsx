@@ -19,12 +19,14 @@ const SettingsModal = ({ toggleSettings, setToggleSettings }) => {
   const [viewState, setViewState] = useState("Details") // 0: users details 1: security
 
   // user 
-  const name = user.name
+  const firstName = user.firstName
+  const lastName = user.lastName
   const email = user.email
   const userImage = user.profileImg
 
   // user state
-  const [cName, setCName] = useState(name || "")
+  const [cfirstName, setCFirstName] = useState(firstName || "")
+  const [cLastName, setCLastName] = useState(lastName || "")
   const [cEmail, setCEmail] = useState(email || "")
   const [cUserImage, setCUserImage] = useState(userImage || null)
   const [password, setPassword] = useState("")
@@ -33,7 +35,8 @@ const SettingsModal = ({ toggleSettings, setToggleSettings }) => {
 
   // functions
   const handleCloseEdit = () => {
-    setCName(name)
+    setCFirstName(firstName)
+    setCLastName(lastName)
     setCEmail(email)
     setCUserImage(userImage)
     setIsEdit(false)
@@ -176,30 +179,49 @@ const SettingsModal = ({ toggleSettings, setToggleSettings }) => {
                 </div>
               </div>
               
-              {/* name */}
+              {/* first name */}
               <div
-                className='flex flex-col relative gap-0.5 w-full h-fit'
+                className='flex flex-col relative gap-1 w-full h-fit'
               >
-                <svg className='absolute top-8 left-3 dark:text-slate-500 text-slate-700' xmlns="http://www.w3.org/2000/svg" width={18} height={18} fill={"currentColor"} viewBox="0 0 24 24">{/* Boxicons v3.0 https://boxicons.com | License  https://docs.boxicons.com/free */}<path d="M12 12c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5m0-8c1.65 0 3 1.35 3 3s-1.35 3-3 3-3-1.35-3-3 1.35-3 3-3M4 22h16c.55 0 1-.45 1-1v-1c0-3.86-3.14-7-7-7h-4c-3.86 0-7 3.14-7 7v1c0 .55.45 1 1 1m6-7h4c2.76 0 5 2.24 5 5H5c0-2.76 2.24-5 5-5"></path></svg>
+                <svg className='absolute top-8.5 left-3 dark:text-slate-500 text-slate-700' xmlns="http://www.w3.org/2000/svg" width={18} height={18} fill={"currentColor"} viewBox="0 0 24 24">{/* Boxicons v3.0 https://boxicons.com | License  https://docs.boxicons.com/free */}<path d="M12 12c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5m0-8c1.65 0 3 1.35 3 3s-1.35 3-3 3-3-1.35-3-3 1.35-3 3-3M4 22h16c.55 0 1-.45 1-1v-1c0-3.86-3.14-7-7-7h-4c-3.86 0-7 3.14-7 7v1c0 .55.45 1 1 1m6-7h4c2.76 0 5 2.24 5 5H5c0-2.76 2.24-5 5-5"></path></svg>
                 <p
                   className='text-sm font-medium'
                 >
-                  Name:
+                  First name:
                 </p>
                 <input 
                   type="text"
                   className='w-full border-slate-500 text-sm outline-none dark:bg-slate-950 dark:border-sky-500 bg-slate-100 p-2 rounded-sm border-2 pl-10'
-                  value={cName}
-                  onChange={(e) => setCName(e.target.value)}
+                  value={firstName}
+                  onChange={(e) => setCFirstName(e.target.value)}
+                  readOnly={!isEdit}
+                />
+              </div>
+
+              {/* last name */}
+              <div
+                className='flex flex-col relative gap-1 w-full h-fit'
+              >
+                <svg className='absolute top-8.5 left-3 dark:text-slate-500 text-slate-700' xmlns="http://www.w3.org/2000/svg" width={18} height={18} fill={"currentColor"} viewBox="0 0 24 24">{/* Boxicons v3.0 https://boxicons.com | License  https://docs.boxicons.com/free */}<path d="M12 12c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5m0-8c1.65 0 3 1.35 3 3s-1.35 3-3 3-3-1.35-3-3 1.35-3 3-3M4 22h16c.55 0 1-.45 1-1v-1c0-3.86-3.14-7-7-7h-4c-3.86 0-7 3.14-7 7v1c0 .55.45 1 1 1m6-7h4c2.76 0 5 2.24 5 5H5c0-2.76 2.24-5 5-5"></path></svg>
+                <p
+                  className='text-sm font-medium'
+                >
+                  Last name:
+                </p>
+                <input 
+                  type="text"
+                  className='w-full border-slate-500 text-sm outline-none dark:bg-slate-950 dark:border-sky-500 bg-slate-100 p-2 rounded-sm border-2 pl-10'
+                  value={cLastName}
+                  onChange={(e) => setCLastName(e.target.value)}
                   readOnly={!isEdit}
                 />
               </div>
 
               {/* email */}
               <div
-                className='flex flex-col relative gap-0.5 w-full h-fit'
+                className='flex flex-col relative gap-1 w-full h-fit'
               >
-                <svg className='absolute top-[33px] left-3 dark:text-slate-500 text-slate-700' xmlns="http://www.w3.org/2000/svg" width={18} height={18} fill={"currentColor"} viewBox="0 0 24 24">{/* Boxicons v3.0 https://boxicons.com | License  https://docs.boxicons.com/free */}<path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2m0 2v.51l-8 6.22-8-6.22V6zM4 18V9.04l7.39 5.74c.18.14.4.21.61.21s.43-.07.61-.21L20 9.03v8.96H4Z"></path></svg>
+                <svg className='absolute top-[35px] left-3 dark:text-slate-500 text-slate-700' xmlns="http://www.w3.org/2000/svg" width={18} height={18} fill={"currentColor"} viewBox="0 0 24 24">{/* Boxicons v3.0 https://boxicons.com | License  https://docs.boxicons.com/free */}<path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2m0 2v.51l-8 6.22-8-6.22V6zM4 18V9.04l7.39 5.74c.18.14.4.21.61.21s.43-.07.61-.21L20 9.03v8.96H4Z"></path></svg>
                 <p
                   className='text-sm font-medium'
                 >
@@ -241,7 +263,7 @@ const SettingsModal = ({ toggleSettings, setToggleSettings }) => {
                         </button>
                     </div>
                   : <button
-                      className='p-2 rounded-md bg-sky-500 hover:bg-sky-500/80 text-slate-200 active:bg-sky-500/70 duration-200 hover:text-slate-200/80 px-3 text-sm font-medium flex flex-row-reverse items-center gap-1'
+                      className='p-2 rounded-md bg-sky-500 hover:bg-sky-500/80 text-slate-200 active:bg-sky-500/70 duration-200 hover:text-slate-200/80 px-4 text-sm font-medium flex flex-row-reverse items-center gap-1'
                       onClick={() => setIsEdit(!isEdit)}
                     >
                       <span>Edit</span> 
@@ -256,11 +278,11 @@ const SettingsModal = ({ toggleSettings, setToggleSettings }) => {
             
             {/* security view */}
             <div
-              className={`${viewState === "Security" ? "flex" : "hidden"} flex-col gap-5 w-full h-full`}
+              className={`${viewState === "Security" ? "flex" : "hidden"} flex-col gap-5 w-full h-full relative`}
             >
 
               <p
-                className='text-sm pl-0.5 font-medium text-slate-200/80 pr-10'
+                className='text-sm pl-0.5 font-medium dark:text-slate-200/80 text-slate-800/80  pr-10'
               >
                 Enter your current password, if you want to change your password.
               </p>
@@ -371,7 +393,17 @@ const SettingsModal = ({ toggleSettings, setToggleSettings }) => {
                   </div>
               </div>
 
-          </div>
+              <div
+                className='absolute w-full h-fit flex items-end justify-end bottom-0 left-0'
+              >
+                <button
+                  className={`text-slate-200 hover:text-slate-200/80 bg-sky-500 hover:bg-sky-600 duration-200 active:bg-sky-700 p-2 px-4  rounded-sm text-sm font-medium`}
+                >
+                  Submit
+                </button>
+              </div>
+
+            </div>
 
           </div>
 
