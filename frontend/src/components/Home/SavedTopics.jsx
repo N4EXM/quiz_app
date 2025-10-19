@@ -1,6 +1,6 @@
 import React from 'react'
 
-const GraphCard = ({
+const SavedTopics = ({
     colStart,
     colEnd,
     rowStart,
@@ -16,9 +16,10 @@ const GraphCard = ({
                 gridRowEnd: rowEnd
             }}
         >
-            statistics
+            SavedTopics
         </div>
     )
+
 }
 
-export default GraphCard
+export default SavedTopics

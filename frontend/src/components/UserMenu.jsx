@@ -21,7 +21,7 @@ const UserMenu = ({ userMenuToggle, setUserMenuToggle, setToggleSettings }) => {
   return (
     <>
       <div
-        className={`absolute top-12 right-0 w-64 min-h-40 h-fit pb-o.5 flex-col rounded-sm items-start justify-start shadow-slate-800 border-slate-100 border-2 dark:border-slate-800 dark:bg-slate-900 bg-slate-100 shadow dark:shadow-none ${userMenuToggle ? "flex" : "hidden"}`}
+        className={`absolute top-12 right-0 w-64 min-h-40 h-fit pb-o.5 flex-col rounded-sm items-start justify-start shadow-slate-800 border-slate-100 border-2 dark:border-sky-500 dark:bg-slate-900 bg-slate-100 shadow ${userMenuToggle ? "flex" : "hidden"}`}
         ref={checkClickRef}
       >
 
@@ -66,7 +66,7 @@ const UserMenu = ({ userMenuToggle, setUserMenuToggle, setToggleSettings }) => {
           </div> 
         </div>
 
-        <span className='w-full min-h-0.5 bg-slate-700'></span>
+        <span className='w-full min-h-0.5 bg-slate-300 dark:bg-slate-800'></span>
         
         {/* settings and dark toggle */}
         <div

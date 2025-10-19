@@ -18,7 +18,7 @@ const Navbar = () => {
 
   return (
     <div
-      className='flex flex-row items-center justify-between w-full h-fit px-5 p-5 bg-slate-100 shadow-slate-400 dark:bg-slate-950 dark:shadow-slate-800 shadow-sm'
+      className='flex flex-row items-center justify-between w-full h-fit px-5 p-4 bg-slate-100 shadow-slate-400 dark:bg-slate-900 dark:shadow-none shadow-sm'
     >
       
       {/* title */}

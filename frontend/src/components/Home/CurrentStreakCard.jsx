@@ -1,6 +1,6 @@
 import React from 'react'
 
-const GraphCard = ({
+const CurrentStreakCard = ({
     colStart,
     colEnd,
     rowStart,
@@ -16,9 +16,10 @@ const GraphCard = ({
                 gridRowEnd: rowEnd
             }}
         >
-            statistics
+            CurrentStreakCard
         </div>
     )
+
 }
 
-export default GraphCard
+export default CurrentStreakCard
