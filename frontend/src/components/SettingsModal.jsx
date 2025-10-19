@@ -61,11 +61,11 @@ const SettingsModal = ({ toggleSettings, setToggleSettings }) => {
 
   return (
     <div
-      className={`${toggleSettings ? "flex" : "hidden"} w-full h-screen absolute top-0 left-0 bg-slate-950/70 items-center justify-center`}
+      className={`${toggleSettings ? "flex" : "hidden"} w-full h-screen absolute z-20 top-0 left-0 bg-slate-950/70 items-center justify-center`}
     >
       
       <div
-        className='dark:bg-slate-900 bg-slate-200 shadow-slate-900 shadow-md dark:shadow-sm border-2 border-slate-500 flex flex-row items-start justify-start dark:border-slate-800 dark:shadow-slate-900 rounded-sm w-[50rem] h-[38rem] relative'
+        className='dark:bg-slate-900 bg-slate-200 shadow-slate-900 shadow-md dark:shadow-sm border-2 border-slate-500 flex flex-row items-start justify-start dark:border-sky-500 dark:shadow-slate-900 rounded-sm w-[50rem] h-[38rem] relative'
         ref={clickOutside}
       >
         {/* views */}

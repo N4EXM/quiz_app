@@ -48,7 +48,7 @@ const StatisticsCard = ({
           </div>
         </div>
         <i
-          className={`${colour === "green" && "bg-teal-500 dark:bg-teal-400"} ${colour === "red" && "bg-rose-500 dark:bg-rose-400"} ${colour === "orange" && "bg-amber-500 dark:bg-amber-400"} ${colour === "blue" && "bg-sky-500 dark:bg-sky-400"} p-2 rounded-md text-white shadow shadow-slate-500 dark:shadow-slate-800`}
+          className={`${colour === "green" && "bg-teal-500 dark:bg-teal-400"} ${colour === "red" && "bg-rose-500 dark:bg-rose-400"} ${colour === "orange" && "bg-amber-500 dark:bg-amber-400"} ${colour === "blue" && "bg-sky-500 dark:bg-sky-400"} p-2 rounded-md text-white`}
         >
           {icon}
         </i>
