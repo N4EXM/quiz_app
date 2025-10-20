@@ -157,6 +157,17 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* For Webkit-based browsers (Chrome, Safari and Opera) */
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}
+
+/* For IE, Edge and Firefox */
+.scrollbar-hide {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
 /* Set Poppins as the default font family */
 @theme {
   --font-sans: 'Poppins', ui-sans-serif, system-ui;

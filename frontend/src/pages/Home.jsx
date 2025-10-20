@@ -78,14 +78,14 @@ const Home = () => {
         />
         <CurrentStreakCard
           rowStart={1}
-          rowEnd={7}
+          rowEnd={6}
           colStart={9}
           colEnd={13}
-          icon={<svg  xmlns="http://www.w3.org/2000/svg" width={24} height={24} fill={"currentColor"} viewBox="0 0 24 24">{/* Boxicons v3.0 https://boxicons.com | License  https://docs.boxicons.com/free */}<path d="m21,4h-3v-1c0-.55-.45-1-1-1H7c-.55,0-1,.45-1,1v1h-3c-.55,0-1,.45-1,1v3c0,4.29,1.79,6.88,4.81,6.99.88,1.52,2.4,2.62,4.19,2.92v2.09h-3v2h8v-2h-3v-2.09c1.79-.3,3.32-1.4,4.19-2.92,3.01-.11,4.81-2.7,4.81-6.99v-3c0-.55-.45-1-1-1ZM4,8v-2h2v6c0,.28.03.56.06.83-1.84-.71-2.06-3.52-2.06-4.83Zm12,4c0,2.21-1.79,4-4,4s-4-1.79-4-4V4h8v8Zm4-4c0,1.31-.22,4.12-2.06,4.83.04-.27.06-.55.06-.83v-6h2v2Z"></path></svg>}
+          icon={<svg  xmlns="http://www.w3.org/2000/svg" width={28} height={28} fill={"currentColor"} viewBox="0 0 24 24">{/* Boxicons v3.0 https://boxicons.com | License  https://docs.boxicons.com/free */}<path d="m21,4h-3v-1c0-.55-.45-1-1-1H7c-.55,0-1,.45-1,1v1h-3c-.55,0-1,.45-1,1v3c0,4.29,1.79,6.88,4.81,6.99.88,1.52,2.4,2.62,4.19,2.92v2.09h-3v2h8v-2h-3v-2.09c1.79-.3,3.32-1.4,4.19-2.92,3.01-.11,4.81-2.7,4.81-6.99v-3c0-.55-.45-1-1-1ZM4,8v-2h2v6c0,.28.03.56.06.83-1.84-.71-2.06-3.52-2.06-4.83Zm12,4c0,2.21-1.79,4-4,4s-4-1.79-4-4V4h8v8Zm4-4c0,1.31-.22,4.12-2.06,4.83.04-.27.06-.55.06-.83v-6h2v2Z"></path></svg>}
           value={8}
         />
         <SavedTopics
-          rowStart={7}
+          rowStart={6}
           rowEnd={13}
           colStart={9}
           colEnd={13}

@@ -1,9 +1,173 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Layout from '../components/Layout'
+import TopicsList from '../components/TopicsListComponents/TopicsList';
+
 
 const TopicListPage = () => {
+
+  const quizzes = [
+    {
+      id: 1,
+      title: "Basic Arithmetic",
+      topic: "Mathematics",
+      desc: "Test your fundamental math skills with addition, subtraction, multiplication, and division problems.",
+      difficulty: "Easy",
+      completed: true
+    },
+    {
+      id: 2,
+      title: "Algebra Fundamentals",
+      topic: "Mathematics",
+      desc: "Solve linear equations and work with variables in this introductory algebra quiz.",
+      difficulty: "Medium",
+      completed: false
+    },
+    {
+      id: 3,
+      title: "World Capitals",
+      topic: "Geography",
+      desc: "How well do you know the capital cities of countries around the world?",
+      difficulty: "Medium",
+      completed: true
+    },
+    {
+      id: 4,
+      title: "Quantum Physics Basics",
+      topic: "Science",
+      desc: "Advanced concepts in quantum mechanics and particle physics for science enthusiasts.",
+      difficulty: "Hard",
+      completed: false
+    },
+    {
+      id: 5,
+      title: "JavaScript Fundamentals",
+      topic: "Programming",
+      desc: "Test your knowledge of JavaScript basics including variables, functions, and data types.",
+      difficulty: "Easy",
+      completed: true
+    },
+    {
+      id: 6,
+      title: "Ancient Civilizations",
+      topic: "History",
+      desc: "Explore the mysteries of ancient Egypt, Greece, Rome, and Mesopotamia.",
+      difficulty: "Medium",
+      completed: false
+    },
+    {
+      id: 7,
+      title: "Organic Chemistry",
+      topic: "Science",
+      desc: "Challenging questions about hydrocarbons, functional groups, and reaction mechanisms.",
+      difficulty: "Hard",
+      completed: false
+    },
+    {
+      id: 8,
+      title: "Grammar Essentials",
+      topic: "English",
+      desc: "Improve your writing with questions about punctuation, sentence structure, and common grammar rules.",
+      difficulty: "Easy",
+      completed: true
+    },
+    {
+      id: 9,
+      title: "Data Structures & Algorithms",
+      topic: "Computer Science",
+      desc: "Advanced problems involving trees, graphs, sorting algorithms, and time complexity.",
+      difficulty: "Hard",
+      completed: true
+    },
+    {
+      id: 10,
+      title: "Art History",
+      topic: "Arts",
+      desc: "From Renaissance masters to modern art movements, test your knowledge of art through the ages.",
+      difficulty: "Medium",
+      completed: false
+    },
+    {
+      id: 11,
+      title: "Human Anatomy",
+      topic: "Biology",
+      desc: "Identify organs, bones, and systems in the human body.",
+      difficulty: "Medium",
+      completed: true
+    },
+    {
+      id: 12,
+      title: "Financial Literacy",
+      topic: "Economics",
+      desc: "Basic concepts in personal finance, investing, and economic principles.",
+      difficulty: "Easy",
+      completed: false
+    },
+    {
+      id: 13,
+      title: "Machine Learning Concepts",
+      topic: "Artificial Intelligence",
+      desc: "Advanced topics in neural networks, deep learning, and AI algorithms.",
+      difficulty: "Hard",
+      completed: false
+    },
+    {
+      id: 14,
+      title: "Music Theory",
+      topic: "Music",
+      desc: "Understand scales, chords, rhythm, and musical notation.",
+      difficulty: "Medium",
+      completed: true
+    },
+    {
+      id: 15,
+      title: "Environmental Science",
+      topic: "Ecology",
+      desc: "Climate change, ecosystems, and conservation efforts around the world.",
+      difficulty: "Easy",
+      completed: false
+    }
+  ];
+
+  const getAllTopics = (quizzes) => {
+    const topics = quizzes.map(quiz => quiz.topic);
+    return [...new Set(topics)]; // Remove duplicates using Set
+  };
+
+  const getQuizzesByTopic = (topic) => {
+    return quizzes.filter(quiz => 
+      quiz.topic.toLowerCase() === topic.toLowerCase()
+    );
+  };
+
+  const [topics] = useState(getAllTopics(quizzes))
+
+  useEffect(() => {
+    console.log(topics)
+  }, [topics])
+
   return (
-    <Layout></Layout>
+    <Layout>
+      <div
+        className='flex flex-col gap-4 w-full p-5 h-full overflow-y-scroll scrollbar-hide'
+      >
+        {
+          topics
+          ? topics.map((topic) => (
+              <TopicsList
+                key={topic}
+                topic={topic}
+                quizTopicsList={getQuizzesByTopic}
+              />
+            )) 
+          : <div
+              className=''
+            >
+              
+            </div>
+          
+        }
+      </div>
+    </Layout>
   )
 }
 

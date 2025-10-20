@@ -43,7 +43,7 @@ const CurrentStreakCard = ({
                     </div>
                 </div>
                 <i
-                    className='p-2 rounded-sm dark:bg-amber-400 bg-amber-500 text-white shadow shadow-slate-500 dark:shadow-slate-800'
+                    className='p-2 rounded-sm dark:bg-amber-400 bg-amber-500 text-white shadow shadow-slate-500 dark:shadow-amber-500'
                 >
                     {icon}
                 </i>
