@@ -53,6 +53,20 @@ const CurrentStreakCard = ({
             <div
                 className='flex flex-col gap-2 w-full 2/6'
             >
+                <div
+                    className='flex flex-row items-center justify-between w-full h-fit'
+                >
+                    <p
+                        className='font-medium text-xs'
+                    >
+                        Days left to pass
+                    </p>
+                    <p
+                        className='font-medium text-xs dark:text-stone-200/70 text-stone-900/70'
+                    >
+                        8/16
+                    </p>
+                </div>
                 <ProgressBar
                     progress={50}
                     colour={"orange"}
@@ -61,13 +75,38 @@ const CurrentStreakCard = ({
 
             {/* streaks */}
             <div
-                className='w-full h-2/6 flex flex-col gap-4'
+                className='w-full h-2/6 flex flex-col gap-4 items-start justify-end'
             >
-                <p
-                    className='text-sm font-medium'
+                {/* highest streak */}
+                <div
+                    className='text-xs font-medium flex flex-row w-full items-center justify-between'
                 >
-                    previous Streaks
-                </p>
+                    <p
+                        className=''
+                    >
+                        Highest Streak:
+                    </p>
+                    <p
+                        className='text-amber-500 dark:text-amber-400'
+                    >
+                        20 days
+                    </p>
+                </div>
+                {/* highest streak */}
+                <div
+                    className='text-xs font-medium flex flex-row w-full items-center justify-between'
+                >
+                    <p
+                        className=''
+                    >
+                        Previous Streak:
+                    </p>
+                    <p
+                        className='text-amber-500 dark:text-amber-400'
+                    >
+                        12 days
+                    </p>
+                </div>
             </div>
 
         </div>
