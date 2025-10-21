@@ -75,7 +75,7 @@ const Navbar = () => {
 
         {/* user image */}
         <button
-          className='w-fit h-fit cursor-pointer border-sky-500 mb-[0.8px] bg-slate-800 rounded-full border-2 '
+          className='w-fit h-fit cursor-pointer border-sky-500 mb-[0.8px] bg-slate-800 rounded-full border-3 '
           onClick={() => setUserMenuToggle(!userMenuToggle)}
         >
           <img 

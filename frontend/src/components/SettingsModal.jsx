@@ -172,7 +172,7 @@ const SettingsModal = ({ toggleSettings, setToggleSettings }) => {
                     Profile Picture
                   </h1>
                   <p
-                    className='text-xs font-medium text-slate-200/60 w-48'
+                    className='text-xs font-medium text-slate-900/60 dark:text-slate-200/60 w-48'
                   >
                     This is the picture other users will see
                   </p>

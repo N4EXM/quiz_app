@@ -20,7 +20,7 @@ const SavedTopics = ({
             topicId: 1,
             title: "The wool trade",
             category: "History",
-            difficulty: "Medium"
+            difficulty: "Med"
         },
         {
             topicId: 2,

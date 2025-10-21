@@ -8,7 +8,7 @@ const Sidebar = () => {
 
   return (
     <div
-      className='h-full items-start justify-between bg-slate-950  border-r-3 border-slate-400 dark:border-slate-800 p-5 flex flex-col gap-10 w-80 max-w-80 min-w-80'
+      className='h-full items-start justify-between bg-slate-900 dark:bg-slate-950  border-r-3 border-slate-400 dark:border-slate-800 p-5 flex flex-col gap-10 w-80 max-w-80 min-w-80'
     >
       <div
         className='flex flex-col gap-2 w-full h-fit'

@@ -23,7 +23,7 @@ const SmallTopicCard = ({title, category, difficulty}) => {
             className='flex flex-col w-fit h-full justify-center pr-2 items-center'
         >
             <p
-                className={`text-xs p-1 px-2 rounded-lg ${difficulty === "Hard" && "bg-red-200 text-rose-600"} ${difficulty === "Medium" && "bg-yellow-200 text-amber-600"} ${difficulty === "Easy" && "bg-teal-200 text-green-600"}`}
+                className={`text-xs p-1 px-2 rounded-lg ${difficulty === "Hard" && "bg-red-200 text-rose-700"} ${difficulty === "Med" && "bg-yellow-200 text-amber-600"} ${difficulty === "Easy" && "bg-teal-200 text-green-700"}`}
             >
                 {difficulty}
             </p>
