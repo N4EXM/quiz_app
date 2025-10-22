@@ -14,7 +14,7 @@ const SmallTopicCard = ({title, category, difficulty}) => {
                 {title}
             </h1>
             <p
-                className='text-xs text-stone-800/70 dark:text-stone-200/70'
+                className='text-xs text-slate-800/70 dark:text-slate-200/70'
             >
                 Category: {category}
             </p>

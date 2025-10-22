@@ -1,7 +1,7 @@
 import React from 'react'
 import TopicCard from './TopicCard'
 
-const TopicsList = ({ quizTopicsList, topicName }) => {
+const TopicsList = ({ quizTopicsList, topicName, handleSelectedQuiz }) => {
 
     const topicIcons = {
         Mathematics:    <svg  
@@ -48,7 +48,7 @@ const TopicsList = ({ quizTopicsList, topicName }) => {
             <span className='w-full min-h-0.5 bg-slate-700 dark:bg-sky-500'></span>
         </div>
         <div
-            className='items-center gap-4 w-full h-fit grid grid-cols-3'
+            className='items-center gap-4 w-full h-fit grid grid-cols-3 2xl:grid-cols-4'
         >
             {
                 quizTopicsList.map((quiz) => (
@@ -59,6 +59,7 @@ const TopicsList = ({ quizTopicsList, topicName }) => {
                         desc={quiz.desc}
                         difficulty={quiz.difficulty}
                         completed={quiz.completed}
+                        handleSelectedQuiz={() => handleSelectedQuiz(quiz, icon)}
                         icon={icon}
                     />
                 ))

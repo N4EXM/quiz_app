@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-const TopicCard = ({title, topic, desc, difficulty, completed, icon}) => {
+const TopicCard = ({title, topic, desc, difficulty, completed, icon, handleSelectedQuiz}) => {
 
   const truncateText = (str, maxLength) => {
     if (str.length > maxLength) {
@@ -40,7 +40,7 @@ const TopicCard = ({title, topic, desc, difficulty, completed, icon}) => {
             </p>
           </div>
           <p
-            className={`text-xs p-1 px-2 rounded-lg ${difficulty === "Hard" && "bg-red-200 text-rose-700"} ${difficulty === "Med" && "bg-yellow-200 text-amber-700"} ${difficulty === "Easy" && "bg-teal-200 text-green-700"}`}
+            className={`text-[11px] p-1 px-2 rounded-lg ${difficulty === "Hard" && "bg-red-200 text-rose-700"} ${difficulty === "Med" && "bg-yellow-200 text-amber-700"} ${difficulty === "Easy" && "bg-teal-200 text-green-700"}`}
           >
               {difficulty}
           </p>
@@ -51,9 +51,9 @@ const TopicCard = ({title, topic, desc, difficulty, completed, icon}) => {
       <div
         className='flex flex-col gap-2 w-full h-4/8'
       >
-        <span className='w-full h-0.5 bg-slate-600/50 dark:bg-slate-200/50 rounded-full'></span>
+        <span className='w-full h-0.5 bg-slate-600/50 dark:bg-slate-400/50 rounded-full'></span>
         <p
-          className='text-[11px] text-slate-500 dark:text-slate-200/70 font-medium'
+          className='text-[11px] text-slate-500 dark:text-slate-300/70 font-medium'
         >
           {truncateText(desc,140)}
         </p>
@@ -64,7 +64,7 @@ const TopicCard = ({title, topic, desc, difficulty, completed, icon}) => {
         className='flex flex-row items-end justify-between w-full h-2/8'
       >
         <p
-          className={`${completed ? "text-green-700 bg-teal-200" : "bg-red-200 text-rose-700"} rounded-full p-1 px-2 flex flex-row items-center gap-2 text-[10px] font-medium`}
+          className={`${completed ? "text-green-700 bg-teal-200" : "bg-red-200 text-rose-700"} rounded-full p-1 px-2 flex flex-row items-center gap-2 text-[10px] font-medium `}
         >
           <svg  xmlns="http://www.w3.org/2000/svg" width={8} height={8} fill={"currentColor"} viewBox="0 0 24 24">{/* Boxicons v3.0 https://boxicons.com | License  https://docs.boxicons.com/free */}<path d="M12 2a10 10 0 1 0 0 20 10 10 0 1 0 0-20"></path></svg>
           {
@@ -84,9 +84,10 @@ const TopicCard = ({title, topic, desc, difficulty, completed, icon}) => {
           </button>
           <button
             // className={`p-2 rounded-sm ${topic == "Science" && "bg-purple-500 dark:bg-purple-400"} ${topic == "Mathematics" && "bg-orange-500 dark:bg-orange-400"} ${topic == "Geography" && "bg-teal-500 dark:bg-teal-400"} ${topic == "Programming" && "bg-green-500 dark:bg-green-400"} ${topic == "History" && "bg-rose-500 dark:bg-rose-400"} ${topic == "English" && "bg-sky-500 dark:bg-sky-400"} ${topic == "Economics" && "bg-amber-500 dark:bg-amber-400"} text-slate-100 shadow shadow-slate-500 dark:shadow-slate-800 text-xs px-3 font-semibold`}
-            className='p-2 px-3 font-medium cursor-pointer hover:bg-blue-600 bg-blue-500  text-slate-100 hover:text-slate-200 rounded text-xs duration-200'
+            className='p-2 px-3 font-medium cursor-pointer hover:bg-sky-600 bg-sky-500  text-slate-100 hover:text-slate-200 rounded text-xs duration-200'
+            onClick={handleSelectedQuiz}
           >
-            Start
+            Select
           </button>
         </div>
       </div>

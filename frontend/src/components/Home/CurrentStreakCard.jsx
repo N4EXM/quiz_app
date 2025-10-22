@@ -31,12 +31,12 @@ const CurrentStreakCard = ({
                         className='w-fit h-fit flex flex-col gap-2'
                     >
                         <h1
-                            className='font-semibold text-lg text-stone-800 dark:text-stone-200'
+                            className='font-semibold text-lg text-slate-800 dark:text-stone-200'
                         >
                             Login Streak
                         </h1>
                         <p
-                            className='font-bold text-3xl text-stone-800/70 dark:text-stone-200/70'
+                            className='font-bold text-3xl text-slate-800/70 dark:text-stone-200/70'
                         >
                             {value} days
                         </p>
@@ -62,7 +62,7 @@ const CurrentStreakCard = ({
                         Days left to pass
                     </p>
                     <p
-                        className='font-medium text-xs dark:text-stone-200/70 text-stone-900/70'
+                        className='font-medium text-xs dark:text-slate-200/70 text-slate-900/70'
                     >
                         8/16
                     </p>

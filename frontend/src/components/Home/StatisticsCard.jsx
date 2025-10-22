@@ -36,7 +36,7 @@ const StatisticsCard = ({
             className='flex flex-col items-start justify-start gap-2 w-fit'
           >
             <h1
-              className='text-sm font-medium text-stone-800/70 dark:text-stone-200/70'
+              className='text-sm font-medium text-slate-800/70 dark:text-stone-200/70'
             >
               {title}
             </h1>
@@ -71,7 +71,7 @@ const StatisticsCard = ({
           {percentageValue}% 
         </p>
         <p
-          className='text-xs flex flex-row items-center gap-0.5 text-stone-800/70 dark:text-stone-200/70'
+          className='text-xs flex flex-row items-center gap-0.5 text-slate-800/70 dark:text-stone-200/70'
         >
           since last week
         </p>
