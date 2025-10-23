@@ -12,16 +12,16 @@ export const useTheme = () => {
 };
 
 export const ThemeProvider = ({ children }) => {
-  const [theme, setTheme] = useState('dark');
-
+  const [theme, setTheme] = useState(() => {
+    return localStorage.getItem('theme') || 'dark';
+  });
   useEffect(() => {
-    // Get theme from localStorage
+    // Get theme from localStorage with fallback to 'dark'
     const storedTheme = localStorage.getItem('theme');
     if (storedTheme) {
       setTheme(storedTheme);
-    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      setTheme('dark');
     }
+    // If no stored theme, the initial state 'dark' will be used
   }, []);
 
   useEffect(() => {

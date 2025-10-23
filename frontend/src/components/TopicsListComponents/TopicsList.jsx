@@ -48,7 +48,7 @@ const TopicsList = ({ quizTopicsList, topicName, handleSelectedQuiz }) => {
             <span className='w-full min-h-0.5 bg-slate-700 dark:bg-sky-500'></span>
         </div>
         <div
-            className='items-center gap-4 w-full h-fit grid grid-cols-3 2xl:grid-cols-4'
+            className='items-center gap-4 w-full h-fit grid md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4'
         >
             {
                 quizTopicsList.map((quiz) => (

@@ -1,5 +1,6 @@
 import React from 'react'
 import useClickOutside from '../../hooks/useClickOutside'
+import { useNavigate } from 'react-router-dom'
 
 const SelectedTopicModal = ({ setToggleSelectedTopicModal, selectedQuiz }) => {
   
@@ -7,6 +8,8 @@ const SelectedTopicModal = ({ setToggleSelectedTopicModal, selectedQuiz }) => {
     
     const difficulty = "Med"
     const completed = true
+
+    const navigate = useNavigate()
 
     return (
         <div
@@ -177,7 +180,7 @@ const SelectedTopicModal = ({ setToggleSelectedTopicModal, selectedQuiz }) => {
                         <button
                             // className={`p-2 rounded-sm ${topic == "Science" && "bg-purple-500 dark:bg-purple-400"} ${topic == "Mathematics" && "bg-orange-500 dark:bg-orange-400"} ${topic == "Geography" && "bg-teal-500 dark:bg-teal-400"} ${topic == "Programming" && "bg-green-500 dark:bg-green-400"} ${topic == "History" && "bg-rose-500 dark:bg-rose-400"} ${topic == "English" && "bg-sky-500 dark:bg-sky-400"} ${topic == "Economics" && "bg-amber-500 dark:bg-amber-400"} text-slate-100 shadow shadow-slate-500 dark:shadow-slate-800 text-xs px-3 font-semibold`}
                             className='p-2 px-3 font-medium cursor-pointer hover:bg-sky-600 bg-sky-500  text-slate-100 hover:text-slate-200 rounded text-sm duration-200'
-                            
+                            onClick={() => navigate('/Topics/12')}
                         >
                             Start
                         </button>

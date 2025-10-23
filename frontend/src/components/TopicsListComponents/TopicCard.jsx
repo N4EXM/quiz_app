@@ -11,7 +11,7 @@ const TopicCard = ({title, topic, desc, difficulty, completed, icon, handleSelec
 
   return (
     <div
-      className='w-full h-48 bg-slate-100 shadow shadow-slate-400 rounded-sm p-4 dark:bg-slate-950 dark:shadow-slate-900 flex flex-col gap-3'
+      className='w-full h-48 bg-slate-100 shadow shadow-slate-400 rounded-sm p-4 dark:bg-slate-950 dark:shadow-slate-900 flex flex-col gap-3 '
     >
       {/* title part */}
       <div

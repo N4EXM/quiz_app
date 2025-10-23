@@ -177,3 +177,7 @@
 body {
   font-family: var(--font-sans);
 }
+
+.dark .progress-bar-background {
+  background-color: var(--dark-bg) !important;
+}
