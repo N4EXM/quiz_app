@@ -7,7 +7,7 @@ const TopicsPage = () => {
 
   const { toggleTheme, theme } = useTheme()
 
-const quiz = {
+  const quiz = {
     id: 2,
     title: "Algebra Fundamentals",
     topic: "Mathematics",
@@ -20,26 +20,26 @@ const quiz = {
   
   const questions = [
     {
-        id: 1,
-        question: "Solve for x: 2x + 5 = 13",
-        answers: [
-            { id: 1, text: "x = 4" },
-            { id: 2, text: "x = 8" },
-            { id: 3, text: "x = 9" },
-            { id: 4, text: "x = 6" }
-        ],
-        correctAnswer: 1
+      id: 1,
+      question: "Solve for x: 2x + 5 = 13",
+      answers: [
+          { id: 1, text: "x = 4" },
+          { id: 2, text: "x = 8" },
+          { id: 3, text: "x = 9" },
+          { id: 4, text: "x = 6" }
+      ],
+      correctAnswer: 1
     },
     {
-        id: 2,
-        question: "Simplify: 3(x + 4) - 2x",
-        answers: [
-            { id: 1, text: "x + 12" },
-            { id: 2, text: "5x + 12" },
-            { id: 3, text: "x - 12" },
-            { id: 4, text: "3x + 10" }
-        ],
-        correctAnswer: 1
+      id: 2,
+      question: "Simplify: 3(x + 4) - 2x",
+      answers: [
+          { id: 1, text: "x + 12" },
+          { id: 2, text: "5x + 12" },
+          { id: 3, text: "x - 12" },
+          { id: 4, text: "3x + 10" }
+      ],
+      correctAnswer: 1
     },
     {
         id: 3,
@@ -136,9 +136,23 @@ const quiz = {
   const [questionAnswered, setQuestionAnswered] = useState(false)
 
   // state
-  const [questionIndex, setQuestionIndex] = useState(1)
+  const [questionIndex, setQuestionIndex] = useState(0)
   const [currentQuestion, setCurrentQuestion] = useState(questions[questionIndex].question)
+  const [progress, setProgress] = useState(questionIndex / questions.length)
   
+  const handleNextQuestion = () => {
+    if (questionIndex < questions.length - 1) {
+      setQuestionIndex(questionIndex + 1)
+      setCurrentQuestion(questions[questionIndex + 1].question)
+    }
+  }
+
+  const handlePreviousQuestion = () => {
+    if (questionIndex > 0) {
+      setQuestionIndex(questionIndex - 1)
+      setCurrentQuestion(questions[questionIndex - 1].question)
+    }
+  }
 
   return (
     <div
@@ -178,7 +192,7 @@ const quiz = {
         
           {/* question title and questions and buttons*/}
           <div
-            className='w-3/5 h-full flex flex-col gap-10 p-5'
+            className='w-3/5 h-full flex flex-col gap-10 p-5 '
           >
 
             {/* title and progressBar */}
@@ -194,11 +208,11 @@ const quiz = {
                 className='w-full h-fit flex flex-row items-center gap-2'
               >
                 <ProgressBar
-                  progress={quiz.progress}
+                  progress={progress}
                   colour={"blue"}
                 />
                 <p>
-                  {quiz.progress}%
+                  {progress}%
                 </p>
               </div>
 
@@ -244,11 +258,13 @@ const quiz = {
             >
               <button
                 className='p-2 px-4 text-sm font-medium rounded border-2 border-sky-500 hover:bg-sky-500 hover:text-slate-100 dark:bg-slate-900 dark:hover:bg-sky-400 dark:hover:border-sky-400 duration-200'
+                onClick={() => handlePreviousQuestion()}
               >
                 Previous
               </button>
               <button
-                className='p-2 px-4 text-sm font-medium rounded border-2 border-sky-500 bg-sky-500 dark:bg-sky-400 dark:border-sky-400 dark:hover:bg-sky-500 dark:hover:border-sky-500 text-slate-100 hover:bg-sky-600 hover:border-sky-600 duration-200'
+                className='p-2 px-4 text-sm font-medium rounded border-2 border-sky-500 bg-sky-500 dark:bg-sky-400 dark:border-sky-400 dark:hover:bg-sky-500 dark:hover:border-sky-500 text-slate-100 hover:bg-sky-600 hover:border-sky-600 duration-200 '
+                onClick={() => handleNextQuestion()}
               >
                 Next
               </button>
@@ -258,9 +274,21 @@ const quiz = {
 
           {/* questions list */}
           <div
-            className='w-2/5 h-full bg-slate-300'
+            className='w-2/5 h-full flex items-center justify-center flex-col'
           >
-
+            <div
+              className='flex flex-col h-4/5 scrollbar-hide gap-4 w-full overflow-y-scroll'
+            >
+              {
+                questions.map((que, index) => (
+                  <p
+                    className={`${questionIndex + 1 === que.id ? "border-sky-500 " : "border-slate-100 dark:border-slate-950" } border-2 p-3 px-4 text-sm font-semibold rounded bg-slate-100 dark:bg-slate-950`}
+                  >
+                    Question {index + 1}
+                  </p>
+                ))
+              }
+            </div>
           </div>
 
       </div>
