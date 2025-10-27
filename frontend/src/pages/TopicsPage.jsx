@@ -144,6 +144,7 @@ const TopicsPage = () => {
     if (questionIndex < questions.length - 1) {
       setQuestionIndex(questionIndex + 1)
       setCurrentQuestion(questions[questionIndex + 1].question)
+      setProgress(((questionIndex + 1) / questions.length) * 100)
     }
   }
 
@@ -151,6 +152,7 @@ const TopicsPage = () => {
     if (questionIndex > 0) {
       setQuestionIndex(questionIndex - 1)
       setCurrentQuestion(questions[questionIndex - 1].question)
+      setProgress(((questionIndex - 1) / questions.length) * 100)
     }
   }
 
@@ -204,18 +206,6 @@ const TopicsPage = () => {
               >
                 {quiz.title}
               </h1>
-              <div
-                className='w-full h-fit flex flex-row items-center gap-2'
-              >
-                <ProgressBar
-                  progress={progress}
-                  colour={"blue"}
-                />
-                <p>
-                  {progress}%
-                </p>
-              </div>
-
             </div>
 
             {/* different answers and question */}
@@ -274,10 +264,21 @@ const TopicsPage = () => {
 
           {/* questions list */}
           <div
-            className='w-2/5 h-full flex items-center justify-center flex-col'
+            className='w-2/5 gap-2 h-full flex items-center justify-center flex-col'
           >
             <div
-              className='flex flex-col h-4/5 scrollbar-hide gap-4 w-full overflow-y-scroll'
+              className='w-full h-1/12 flex flex-row items-center gap-2'
+            >
+              <ProgressBar
+                progress={progress}
+                colour={"blue"}
+              />
+              <p>
+                {progress}%
+              </p>
+            </div>
+            <div
+              className='flex flex-col h-10/12 scrollbar-hide gap-4 w-full overflow-y-scroll'
             >
               {
                 questions.map((que, index) => (

@@ -4,14 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Symfony\Component\Console\Question\Question;
 
 class Quiz extends Model
 {
     use HasFactory;
 
     protected $primaryKey = 'quiz_id';
-    public $timeStamps = true;
+    public $timestamps = true;
 
     protected $fillable = [
         'title',
@@ -26,31 +25,36 @@ class Quiz extends Model
 
     protected $casts = [
         'is_active' => 'boolean',
+        'time_limit' => 'integer'
     ];
 
-    // relationships
-
-    public function category() {
+    // Relationships
+    public function category()
+    {
         return $this->belongsTo(Category::class, 'category_id');
     }
 
-    public function questions() {
+    public function questions()
+    {
         return $this->hasMany(Question::class, 'quiz_id');
     }
 
-    public function attempts() {
+    public function attempts()
+    {
         return $this->hasMany(QuizAttempt::class, 'quiz_id');
     }
 
-    public function creator() {
+    public function creator()
+    {
         return $this->belongsTo(User::class, 'created_by');
     }
 
-    public function favourites() {
-        return $this->hasMany(UserFavourite::class, 'quiz_id');
+    public function favorites()
+    {
+        return $this->hasMany(UserFavorite::class, 'quiz_id');
     }
 
-    // scopes
+    // Scopes
     public function scopeActive($query)
     {
         return $query->where('is_active', true);
@@ -65,5 +69,4 @@ class Quiz extends Model
     {
         return $query->where('category_id', $categoryId);
     }
-
 }

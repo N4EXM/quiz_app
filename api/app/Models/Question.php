@@ -10,7 +10,7 @@ class Question extends Model
     use HasFactory;
 
     protected $primaryKey = 'question_id';
-    public $timeStamps = true;
+    public $timestamps = true;
 
     protected $fillable = [
         'quiz_id',
@@ -57,5 +57,4 @@ class Question extends Model
             ->where('is_correct', true)
             ->exists();
     }
-
 }

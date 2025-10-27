@@ -25,6 +25,7 @@ class QuizzesTableSeeder extends Seeder
                 'description' => 'Test your fundamental math skills with addition, subtraction, multiplication, and division.',
                 'category_id' => $mathCategory->category_id,
                 'difficulty' => 'Easy',
+                'time_limit' => 15,
                 'max_questions' => 10,
                 'created_by' => $adminUser->user_id
             ],
@@ -33,6 +34,7 @@ class QuizzesTableSeeder extends Seeder
                 'description' => 'Solve linear equations and work with variables in this introductory algebra quiz.',
                 'category_id' => $mathCategory->category_id,
                 'difficulty' => 'Medium',
+                'time_limit' => 20,
                 'max_questions' => 8,
                 'created_by' => $adminUser->user_id
             ],
@@ -41,6 +43,7 @@ class QuizzesTableSeeder extends Seeder
                 'description' => 'Challenging problems involving derivatives, integrals, and limits.',
                 'category_id' => $mathCategory->category_id,
                 'difficulty' => 'Hard',
+                'time_limit' => 30,
                 'max_questions' => 6,
                 'created_by' => $adminUser->user_id
             ],
@@ -51,6 +54,7 @@ class QuizzesTableSeeder extends Seeder
                 'description' => 'Introduction to cells, organisms, and biological processes.',
                 'category_id' => $scienceCategory->category_id,
                 'difficulty' => 'Easy',
+                'time_limit' => 15,
                 'max_questions' => 10,
                 'created_by' => $adminUser->user_id
             ],
@@ -59,6 +63,7 @@ class QuizzesTableSeeder extends Seeder
                 'description' => 'Test your knowledge of periodic table elements and chemical reactions.',
                 'category_id' => $scienceCategory->category_id,
                 'difficulty' => 'Medium',
+                'time_limit' => 20,
                 'max_questions' => 12,
                 'created_by' => $adminUser->user_id
             ],
@@ -69,6 +74,7 @@ class QuizzesTableSeeder extends Seeder
                 'description' => 'Key events, battles, and figures from the Second World War.',
                 'category_id' => $historyCategory->category_id,
                 'difficulty' => 'Medium',
+                'time_limit' => 25,
                 'max_questions' => 15,
                 'created_by' => $adminUser->user_id
             ],
@@ -79,6 +85,7 @@ class QuizzesTableSeeder extends Seeder
                 'description' => 'Variables, functions, and basic syntax in JavaScript.',
                 'category_id' => $programmingCategory->category_id,
                 'difficulty' => 'Easy',
+                'time_limit' => 20,
                 'max_questions' => 10,
                 'created_by' => $adminUser->user_id
             ],
@@ -87,6 +94,7 @@ class QuizzesTableSeeder extends Seeder
                 'description' => 'Data structures, functions, and object-oriented programming in Python.',
                 'category_id' => $programmingCategory->category_id,
                 'difficulty' => 'Medium',
+                'time_limit' => 25,
                 'max_questions' => 12,
                 'created_by' => $adminUser->user_id
             ]
