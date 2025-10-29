@@ -1,8 +1,15 @@
 import React, { useState } from 'react'
 import backgroundImg from './../assets/images/backgroundImg.jpg'
 import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+import { useAuth } from '../context/AuthContext'
+
+
 
 const Login = () => {
+
+  // context
+  const { setIsAuthenticated, setIsLoading, isLoading, setUser } = useAuth()
 
   // toggles
   const [showPassword, setShowPassword] = useState(false)
@@ -12,11 +19,52 @@ const Login = () => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
 
+  const navigate = useNavigate()
+
   // functions
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
+
+    setIsLoading(true)
 
     e.preventDefault()
-    console.log("yay")
+
+    const response = await fetch('/api/login', {
+      method: "POST",
+      headers: {
+        'Content-type': 'application/json',
+        'Accept':  'application/json'
+      },
+      body: JSON.stringify({
+        email: email,
+        password: password
+      })
+    })
+
+    const data = await response.json()
+
+    if (!response.ok) {
+      throw new Error(data.message)
+    }
+
+    const user = {
+      profileImg: null,
+      first_name: data.user.first_name,
+      last_name: data.user.last_name,
+      email: data.user.email,
+      id: data.user.user_id,
+      username: data.user.username
+    }
+
+    console.log(data)
+
+    setUser(user)
+    // localStorage.setItem('auth_token', data.token)
+    localStorage.setItem('user', JSON.stringify(user))
+
+    setIsLoading(false)
+    setIsAuthenticated(true)
+    
+    navigate('/')
 
   }
 
@@ -32,13 +80,13 @@ const Login = () => {
       /> */}
 
       <form
-        className='w-96 p-8 h-[30rem] flex flex-col gap-10 bg-white/30 border-2 border-white/50 backdrop-blur-lg rounded-md z-10'
+        className='w-[26rem] p-8 h-[30rem] flex flex-col gap-10 bg-white/30 border-2 border-white/50 backdrop-blur-lg rounded-md z-10'
         onSubmit={handleFormSubmit}
       >
 
         {/* title */}
         <div
-          className='flex flex-col gap-1 w-full'
+          className='flex flex-col gap-3 w-full'
         >
           <h1
             className='text-4xl font-bold'
@@ -76,7 +124,7 @@ const Login = () => {
               type="text"
               placeholder='Enter an email...'
               className='pl-10 p-2 rounded-md placeholder:text-white/70 border-2 outline-none border-white/50 bg-white/20 text-sm'
-             />
+            />
           </div>
 
           {/* password */}
@@ -99,7 +147,7 @@ const Login = () => {
               type={showPassword ? "text" : "password"}
               placeholder='Enter an password...'
               className='pl-10 p-2 rounded-md placeholder:text-white/70 border-2 outline-none border-white/50 bg-white/20 text-sm'
-             />
+            />
               
             <button
               className='p-2 absolute top-6.5 right-1'
@@ -149,7 +197,11 @@ const Login = () => {
             className='p-2 rounded-md shadow-slate-500 font-semibold duration-200 hover:text-slate-300 hover:bg-slate-800 active:bg-slate-700 shadow w-full bg-slate-900'
             type='submit'
           >
-            Sign In 
+            {
+              isLoading
+              ? "Loading"
+              : "Login"
+            } 
           </button>
           <div
             className='w-full flex items-center justify-center'

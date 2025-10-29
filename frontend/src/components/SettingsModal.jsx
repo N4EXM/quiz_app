@@ -19,8 +19,8 @@ const SettingsModal = ({ toggleSettings, setToggleSettings }) => {
   const [viewState, setViewState] = useState("Details") // 0: users details 1: security
 
   // user 
-  const firstName = user.firstName
-  const lastName = user.lastName
+  const firstName = user.first_name || "First_name"
+  const lastName = user.last_name
   const email = user.email
   const userImage = user.profileImg
 

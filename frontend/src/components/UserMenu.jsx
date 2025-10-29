@@ -33,8 +33,12 @@ const UserMenu = ({ userMenuToggle, setUserMenuToggle, setToggleSettings }) => {
             className='w-fit h-fit border-sky-500 cursor-pointer bg-slate-800 p-0.5 rounded-full border-2'
           >
             <img 
-              src={`${user !== null ? user.profileImg : defaultUserImg}`} 
-              className='w-8 h-8 rounded-full'
+              src={`${user?.profileImg !== null ? user.profileImg : defaultUserImg}`} 
+              className={
+                user?.profileImg !== null
+                ? 'w-8 h-8 rounded-full'
+                : 'w-8 p-1'
+              }
               alt="userProfile"
             />     
           </div>
@@ -49,7 +53,7 @@ const UserMenu = ({ userMenuToggle, setUserMenuToggle, setToggleSettings }) => {
                 ? <span
                     className='flex flex-row items-center gap-1'
                   >
-                     {user.firstName} {user.lastName}
+                    {user.first_name} {user.last_name}
                   </span>
                 : "Guest"
               }

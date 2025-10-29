@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useAuth } from './../context/AuthContext'
 import defaultUserImg from '../assets/images/userDefault.png'
 import UserMenu from './UserMenu'
@@ -9,12 +9,15 @@ const Navbar = () => {
 
   // context
   const { user } = useAuth()
-  const { theme, toggleTheme } = useTheme()
+  // const { theme, toggleTheme } = useTheme()
 
   // toggles
   const [userMenuToggle, setUserMenuToggle] = useState(false)
   const [toggleSettings, setToggleSettings] = useState(false)
 
+  useEffect(() => {
+    console.log(user)
+  }, [])
 
   return (
     <div
@@ -75,12 +78,16 @@ const Navbar = () => {
 
         {/* user image */}
         <button
-          className='w-fit h-fit cursor-pointer border-sky-500 mb-[0.8px] bg-slate-800 rounded-full border-3 '
+          className='w-fit h-fit cursor-pointer border-sky-500 mb-[0.8px] bg-slate-900  rounded-full border-3 '
           onClick={() => setUserMenuToggle(!userMenuToggle)}
         >
           <img 
-            src={`${user !== null ? user.profileImg : defaultUserImg}`} 
-            className='w-8 h-8 rounded-full'
+            src={`${user?.profileImg !== null ? user.profileImg : defaultUserImg}`} 
+            className={
+              user?.profileImg !== null
+              ? 'w-8 h-8 rounded-full'
+              : 'w-8 p-1'
+            }
             alt="userProfile"
           />
         </button>
