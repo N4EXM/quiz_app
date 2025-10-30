@@ -53,7 +53,7 @@ const UserMenu = ({ userMenuToggle, setUserMenuToggle, setToggleSettings }) => {
                 ? <span
                     className='flex flex-row items-center gap-1'
                   >
-                    {user.first_name} {user.last_name}
+                    {user.username} 
                   </span>
                 : "Guest"
               }

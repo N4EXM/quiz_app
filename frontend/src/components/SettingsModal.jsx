@@ -2,12 +2,15 @@ import React, { useState } from 'react'
 import useClickOutside from '../hooks/useClickOutside'
 import { useAuth } from '../context/AuthContext'
 import defaultProfileImg from '../assets/images/userDefault.png'
+import defaultProfileImgDark from '../assets/images/userDefaultDark.png'
+import { useTheme } from '../context/ThemeContext'
 
 
 const SettingsModal = ({ toggleSettings, setToggleSettings }) => {
   
   // context
   const { user } = useAuth()
+  const { theme } = useTheme()
 
   // toggles
   const [isEdit, setIsEdit] = useState(false)
@@ -23,8 +26,10 @@ const SettingsModal = ({ toggleSettings, setToggleSettings }) => {
   const lastName = user.last_name
   const email = user.email
   const userImage = user.profileImg
+  const username = user.username
 
   // user state
+  const [cUsername, setCUsername] = useState(username || "")  
   const [cfirstName, setCFirstName] = useState(firstName || "")
   const [cLastName, setCLastName] = useState(lastName || "")
   const [cEmail, setCEmail] = useState(email || "")
@@ -145,45 +150,110 @@ const SettingsModal = ({ toggleSettings, setToggleSettings }) => {
 
               {/* profile pic */}
               <div
-                className='relative flex w-fit flex-row gap-3'
+                className='flex flex-row items-start justify-between w-full h-full'
               >
                 <div
-                  className='relative w-fit flex h-fit'
+                  className='relative flex w-full flex-row gap-3 items-start justify-start h-fit'
                 >
-                  <img 
-                    src={cUserImage || defaultProfileImg}
-                    alt='user image'
-                    className={`${cUserImage === null && "p-2"} w-20 h-20 rounded-full border-2 border-slate-500  dark:border-sky-500`}
-                  />
-                  <button
-                    className={`${isEdit ? "flex" : "hidden"} absolute -right-0.5 -bottom-0.5 p-1 rounded-full bg-slate-200 border-2 border-slate-500 dark:border-sky-500 dark:bg-slate-800 hover:bg-sky-500 hover:border-sky-500 duration-200 hover:text-slate-200 cursor-pointer`}
+                  <div
+                    className='relative w-fit flex h-fit bg-slate-300 dark:bg-slate-950 rounded-full '
                   >
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 20 20">
-                      <path fill="currentcolor" d="M13.999 7.5a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0m-1 0a.5.5 0 1 0-1 0a.5.5 0 0 0 1 0M3 6a3 3 0 0 1 3-3h7.999a3 3 0 0 1 3 3v3.002a2.9 2.9 0 0 0-1 .229V6a2 2 0 0 0-2-2h-8a2 2 0 0 0-2 2v7.999c0 .372.103.721.28 1.02l4.669-4.588a1.5 1.5 0 0 1 2.102 0l1.745 1.715l-.707.707l-1.738-1.709a.5.5 0 0 0-.701 0l-4.661 4.58A2 2 0 0 0 6 16h3.474q-.024.076-.043.155L9.22 17H6a3 3 0 0 1-3-3zm7.979 9.376l4.829-4.83a1.87 1.87 0 1 1 2.644 2.646l-4.829 4.828a2.2 2.2 0 0 1-1.02.578l-1.498.375a.89.89 0 0 1-1.078-1.079l.374-1.498c.097-.386.296-.739.578-1.02" />
-                    </svg>
-                  </button>
+                    <img 
+                      src={cUserImage || 
+                        theme === "light"
+                        ? defaultProfileImgDark
+                        : defaultProfileImg
+                      }
+                      alt='user image'
+                      className={`${cUserImage === null ? "p-3 min-w-20 min-h-20" : "min-w-20 min-h-20"}  rounded-full border-3 border-slate-500  dark:border-sky-500`}
+                    />
+                    <button
+                      className={`${isEdit ? "flex" : "hidden"} absolute -right-0.5 -bottom-0.5 p-1 rounded-full bg-slate-200 border-2 border-slate-500 dark:border-sky-500 dark:bg-slate-800 hover:bg-sky-500 hover:border-sky-500 duration-200 hover:text-slate-200 cursor-pointer`}
+                    >
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 20 20">
+                        <path fill="currentcolor" d="M13.999 7.5a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0m-1 0a.5.5 0 1 0-1 0a.5.5 0 0 0 1 0M3 6a3 3 0 0 1 3-3h7.999a3 3 0 0 1 3 3v3.002a2.9 2.9 0 0 0-1 .229V6a2 2 0 0 0-2-2h-8a2 2 0 0 0-2 2v7.999c0 .372.103.721.28 1.02l4.669-4.588a1.5 1.5 0 0 1 2.102 0l1.745 1.715l-.707.707l-1.738-1.709a.5.5 0 0 0-.701 0l-4.661 4.58A2 2 0 0 0 6 16h3.474q-.024.076-.043.155L9.22 17H6a3 3 0 0 1-3-3zm7.979 9.376l4.829-4.83a1.87 1.87 0 1 1 2.644 2.646l-4.829 4.828a2.2 2.2 0 0 1-1.02.578l-1.498.375a.89.89 0 0 1-1.078-1.079l.374-1.498c.097-.386.296-.739.578-1.02" />
+                      </svg>
+                    </button>
+                  </div>
+                  <div
+                    className='flex flex-col gap-0.5 w-fit h-fit pt-0.5 items-start justify-start'
+                  >
+                    <h1
+                      className='text-lg font-semibold'
+                    >
+                      Profile Picture
+                    </h1>
+                    <p
+                      className='text-xs font-medium text-slate-900/60 dark:text-slate-200/60 w-48'
+                    >
+                      This is the picture other users will see
+                    </p>
+                  </div>
                 </div>
+                 {/* edit button */}
                 <div
-                  className='flex flex-col gap-0.5 w-fit h-fit pt-0.5'
+                  className='pr-1 w-full h-fit flex items-start justify-end'
                 >
-                  <h1
-                    className='text-lg font-semibold'
-                  >
-                    Profile Picture
-                  </h1>
-                  <p
-                    className='text-xs font-medium text-slate-900/60 dark:text-slate-200/60 w-48'
-                  >
-                    This is the picture other users will see
-                  </p>
+                  {
+                    isEdit
+                    ?   <div
+                          className='flex flex-row items-center gap-2'
+                        >
+                          <button
+                            className='bg-rose-500 p-2 rounded text-slate-200 hover:bg-rose-500/80 active:bg-rose-500/60 duration-200 hover:text-text/80'
+                            onClick={() => handleCloseEdit()}
+                          >
+                            <svg 
+                              xmlns="http://www.w3.org/2000/svg" width={20} height={20} fill={"currentColor"} viewBox="0 0 24 24">{/* Boxicons v3.0 https://boxicons.com | License  https://docs.boxicons.com/free */}<path d="m7.76 14.83-2.83 2.83 1.41 1.41 2.83-2.83 2.12-2.12.71-.71.71.71 1.41 1.42 3.54 3.53 1.41-1.41-3.53-3.54-1.42-1.41-.71-.71 5.66-5.66-1.41-1.41L12 10.59 6.34 4.93 4.93 6.34 10.59 12l-.71.71z"></path>
+                            </svg>
+                          </button>
+                          <button
+                              className='bg-teal-500 p-2 rounded hover:bg-teal-500/80 text-slate-200 active:bg-teal-500/60 duration-200 hover:text-slate-200/80'
+                              onClick={() => {}}
+                          >
+                              <svg 
+                                xmlns="http://www.w3.org/2000/svg" width={20} height={20} fill={"currentColor"} viewBox="0 0 24 24">{/* Boxicons v3.0 https://boxicons.com | License  https://docs.boxicons.com/free */}<path d="M9 15.59 4.71 11.3 3.3 12.71l5 5c.2.2.45.29.71.29s.51-.1.71-.29l11-11-1.41-1.41L9.02 15.59Z"></path>
+                              </svg>
+                          </button>
+                      </div>
+                    : <button
+                        className='p-2 rounded-md bg-sky-500 hover:bg-sky-500/80 text-slate-200 active:bg-sky-500/70 duration-200 hover:text-slate-200/80 px-4 text-sm font-medium flex flex-row-reverse items-center gap-1'
+                        onClick={() => setIsEdit(!isEdit)}
+                      >
+                        <span>Edit</span> 
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg" width={16} height={16} fill={"currentColor"} viewBox="0 0 24 24">{/* Boxicons v3.0 https://boxicons.com | License  https://docs.boxicons.com/free */}<path d="M5 21h14c1.1 0 2-.9 2-2v-7h-2v7H5V5h7V3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2"></path><path d="M7 13v3c0 .55.45 1 1 1h3c.27 0 .52-.11.71-.29l9-9a.996.996 0 0 0 0-1.41l-3-3a.996.996 0 0 0-1.41 0l-9.01 8.99A1 1 0 0 0 7 13m10-7.59L18.59 7 17.5 8.09 15.91 6.5zm-8 8 5.5-5.5 1.59 1.59-5.5 5.5H9z"></path>
+                        </svg>
+                      </button>
+                  }
                 </div>
               </div>
               
+
               {/* first name */}
               <div
                 className='flex flex-col relative gap-1 w-full h-fit'
               >
-                <svg className='absolute top-8.5 left-3 dark:text-slate-500 text-slate-700' xmlns="http://www.w3.org/2000/svg" width={18} height={18} fill={"currentColor"} viewBox="0 0 24 24">{/* Boxicons v3.0 https://boxicons.com | License  https://docs.boxicons.com/free */}<path d="M12 12c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5m0-8c1.65 0 3 1.35 3 3s-1.35 3-3 3-3-1.35-3-3 1.35-3 3-3M4 22h16c.55 0 1-.45 1-1v-1c0-3.86-3.14-7-7-7h-4c-3.86 0-7 3.14-7 7v1c0 .55.45 1 1 1m6-7h4c2.76 0 5 2.24 5 5H5c0-2.76 2.24-5 5-5"></path></svg>
+                <svg className='absolute top-[35.5px] left-3 dark:text-slate-500 text-slate-700' xmlns="http://www.w3.org/2000/svg" width={18} height={18} fill={"currentColor"} viewBox="0 0 24 24">{/* Boxicons v3.0 https://boxicons.com | License  https://docs.boxicons.com/free */}<path d="M12 12c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5m0-8c1.65 0 3 1.35 3 3s-1.35 3-3 3-3-1.35-3-3 1.35-3 3-3M4 22h16c.55 0 1-.45 1-1v-1c0-3.86-3.14-7-7-7h-4c-3.86 0-7 3.14-7 7v1c0 .55.45 1 1 1m6-7h4c2.76 0 5 2.24 5 5H5c0-2.76 2.24-5 5-5"></path></svg>
+                <p
+                  className='text-sm font-medium'
+                >
+                  Username:
+                </p>
+                <input 
+                  type="text"
+                  className='w-full border-slate-500 text-sm outline-none dark:bg-slate-950 dark:border-sky-500 bg-slate-100 p-2 rounded-sm border-2 pl-10'
+                  value={cUsername}
+                  onChange={(e) => setCFirstName(e.target.value)}
+                  readOnly={!isEdit}
+                />
+              </div>
+
+              {/* first name */}
+              <div
+                className='flex flex-col relative gap-1 w-full h-fit'
+              >
+                <svg className='absolute top-[35.5px] left-3 dark:text-slate-500 text-slate-700' xmlns="http://www.w3.org/2000/svg" width={18} height={18} fill={"currentColor"} viewBox="0 0 24 24">{/* Boxicons v3.0 https://boxicons.com | License  https://docs.boxicons.com/free */}<path d="M12 12c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5m0-8c1.65 0 3 1.35 3 3s-1.35 3-3 3-3-1.35-3-3 1.35-3 3-3M4 22h16c.55 0 1-.45 1-1v-1c0-3.86-3.14-7-7-7h-4c-3.86 0-7 3.14-7 7v1c0 .55.45 1 1 1m6-7h4c2.76 0 5 2.24 5 5H5c0-2.76 2.24-5 5-5"></path></svg>
                 <p
                   className='text-sm font-medium'
                 >
@@ -202,7 +272,7 @@ const SettingsModal = ({ toggleSettings, setToggleSettings }) => {
               <div
                 className='flex flex-col relative gap-1 w-full h-fit'
               >
-                <svg className='absolute top-8.5 left-3 dark:text-slate-500 text-slate-700' xmlns="http://www.w3.org/2000/svg" width={18} height={18} fill={"currentColor"} viewBox="0 0 24 24">{/* Boxicons v3.0 https://boxicons.com | License  https://docs.boxicons.com/free */}<path d="M12 12c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5m0-8c1.65 0 3 1.35 3 3s-1.35 3-3 3-3-1.35-3-3 1.35-3 3-3M4 22h16c.55 0 1-.45 1-1v-1c0-3.86-3.14-7-7-7h-4c-3.86 0-7 3.14-7 7v1c0 .55.45 1 1 1m6-7h4c2.76 0 5 2.24 5 5H5c0-2.76 2.24-5 5-5"></path></svg>
+                <svg className='absolute top-[35.5px] left-3 dark:text-slate-500 text-slate-700' xmlns="http://www.w3.org/2000/svg" width={18} height={18} fill={"currentColor"} viewBox="0 0 24 24">{/* Boxicons v3.0 https://boxicons.com | License  https://docs.boxicons.com/free */}<path d="M12 12c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5m0-8c1.65 0 3 1.35 3 3s-1.35 3-3 3-3-1.35-3-3 1.35-3 3-3M4 22h16c.55 0 1-.45 1-1v-1c0-3.86-3.14-7-7-7h-4c-3.86 0-7 3.14-7 7v1c0 .55.45 1 1 1m6-7h4c2.76 0 5 2.24 5 5H5c0-2.76 2.24-5 5-5"></path></svg>
                 <p
                   className='text-sm font-medium'
                 >
@@ -221,7 +291,7 @@ const SettingsModal = ({ toggleSettings, setToggleSettings }) => {
               <div
                 className='flex flex-col relative gap-1 w-full h-fit'
               >
-                <svg className='absolute top-[35px] left-3 dark:text-slate-500 text-slate-700' xmlns="http://www.w3.org/2000/svg" width={18} height={18} fill={"currentColor"} viewBox="0 0 24 24">{/* Boxicons v3.0 https://boxicons.com | License  https://docs.boxicons.com/free */}<path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2m0 2v.51l-8 6.22-8-6.22V6zM4 18V9.04l7.39 5.74c.18.14.4.21.61.21s.43-.07.61-.21L20 9.03v8.96H4Z"></path></svg>
+                <svg className='absolute top-[35.5px] left-3 dark:text-slate-500 text-slate-700' xmlns="http://www.w3.org/2000/svg" width={18} height={18} fill={"currentColor"} viewBox="0 0 24 24">{/* Boxicons v3.0 https://boxicons.com | License  https://docs.boxicons.com/free */}<path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2m0 2v.51l-8 6.22-8-6.22V6zM4 18V9.04l7.39 5.74c.18.14.4.21.61.21s.43-.07.61-.21L20 9.03v8.96H4Z"></path></svg>
                 <p
                   className='text-sm font-medium'
                 >
@@ -234,44 +304,6 @@ const SettingsModal = ({ toggleSettings, setToggleSettings }) => {
                   onChange={(e) => setCEmail(e.target.value)}
                   readOnly={!isEdit}
                 />
-              </div>
-
-              {/* edit button */}
-              <div
-                className='p-5 w-full h-fit absolute bottom-0 left-0 flex items-end justify-end'
-              >
-                {
-                  isEdit
-                  ?   <div
-                        className='flex flex-row items-center gap-2'
-                      >
-                        <button
-                          className='bg-rose-500 p-2 rounded text-slate-200 hover:bg-rose-500/80 active:bg-rose-500/60 duration-200 hover:text-text/80'
-                          onClick={() => handleCloseEdit()}
-                        >
-                          <svg 
-                            xmlns="http://www.w3.org/2000/svg" width={20} height={20} fill={"currentColor"} viewBox="0 0 24 24">{/* Boxicons v3.0 https://boxicons.com | License  https://docs.boxicons.com/free */}<path d="m7.76 14.83-2.83 2.83 1.41 1.41 2.83-2.83 2.12-2.12.71-.71.71.71 1.41 1.42 3.54 3.53 1.41-1.41-3.53-3.54-1.42-1.41-.71-.71 5.66-5.66-1.41-1.41L12 10.59 6.34 4.93 4.93 6.34 10.59 12l-.71.71z"></path>
-                          </svg>
-                        </button>
-                        <button
-                            className='bg-sky-500 p-2 rounded hover:bg-sky-500/80 text-slate-200 active:bg-sky-500/60 duration-200 hover:text-slate-200/80'
-                            onClick={() => {}}
-                        >
-                            <svg 
-                              xmlns="http://www.w3.org/2000/svg" width={20} height={20} fill={"currentColor"} viewBox="0 0 24 24">{/* Boxicons v3.0 https://boxicons.com | License  https://docs.boxicons.com/free */}<path d="M9 15.59 4.71 11.3 3.3 12.71l5 5c.2.2.45.29.71.29s.51-.1.71-.29l11-11-1.41-1.41L9.02 15.59Z"></path>
-                            </svg>
-                        </button>
-                    </div>
-                  : <button
-                      className='p-2 rounded-md bg-sky-500 hover:bg-sky-500/80 text-slate-200 active:bg-sky-500/70 duration-200 hover:text-slate-200/80 px-4 text-sm font-medium flex flex-row-reverse items-center gap-1'
-                      onClick={() => setIsEdit(!isEdit)}
-                    >
-                      <span>Edit</span> 
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg" width={16} height={16} fill={"currentColor"} viewBox="0 0 24 24">{/* Boxicons v3.0 https://boxicons.com | License  https://docs.boxicons.com/free */}<path d="M5 21h14c1.1 0 2-.9 2-2v-7h-2v7H5V5h7V3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2"></path><path d="M7 13v3c0 .55.45 1 1 1h3c.27 0 .52-.11.71-.29l9-9a.996.996 0 0 0 0-1.41l-3-3a.996.996 0 0 0-1.41 0l-9.01 8.99A1 1 0 0 0 7 13m10-7.59L18.59 7 17.5 8.09 15.91 6.5zm-8 8 5.5-5.5 1.59 1.59-5.5 5.5H9z"></path>
-                      </svg>
-                    </button>
-                }
               </div>
 
             </div>

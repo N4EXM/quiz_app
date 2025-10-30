@@ -19,67 +19,132 @@ export const AuthProvider = ({ children }) => {
     const [isAuthenticated, setIsAuthenticated] = useState(true)
     const [isLoading, setIsLoading] = useState(false)
     const [user, setUser] = useState(null)
-    // const [user, setUser] = useState({
-    //     firstName: "John",
-    //     lastName: "Doe",
-    //     email: "johnDoe@example.com",
-    //     profileImg: userImg,
-    // })
+    const [token, setToken] = useState(localStorage.getItem('auth_token'));
 
-
+    // ✅ Automatically login user if token exists
     useEffect(() => {
+        const autoLogin = async () => {
+            const storedToken = localStorage.getItem('auth_token');
+            const storedUser = localStorage.getItem('user');
 
-        const checkAuthStatus = () => {
+            if (storedToken && storedUser) {
+                try {
+                    // Verify token is still valid by fetching user data
+                    const response = await fetch('api/user', {
+                        headers: {
+                            'Authorization': `Bearer ${storedToken}`,
+                            'Accept': 'application/json',
+                        }
+                    });
+
+                    if (response.ok) {
+                        const data = await response.json();
+                        console.log("it worked")
+                        setUser(data.user);
+                        setToken(storedToken);
+                    } else {
+                        // Token is invalid, clear storage
+                        logout();
+                    }
+                } catch (error) {
+                    console.error('Auto-login failed:', error);
+                    logout();
+                }
+            }
+            setIsLoading(false);
+        };
+
+        autoLogin();
+    }, []);
+
+    const login = async (email, password) => {
+        try {
+            const response = await fetch('http://localhost:8000/api/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                },
+                body: JSON.stringify({ email, password })
+            });
+
+            const data = await response.json();
             
-            const token = localStorage.getItem("authToken")
+            console.log(data)
+
+            if (!response.ok) {
+                throw new Error(data.message || 'Login failed');
+            }
+
+            // ✅ Save token and user data
+            localStorage.setItem('auth_token', data.token);
+            localStorage.setItem('user', JSON.stringify(data.user));
             
+            setUser(data.user);
+            setToken(data.token);
+
+            return { success: true };
+        } catch (error) {
+            return { success: false, error: error.message };
+        }
+    };
+
+    const register = async (userData) => {
+        try {
+            const response = await fetch('api/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                },
+                body: JSON.stringify(userData)
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.message || 'Registration failed');
+            }
+
+            // ✅ Auto-login after registration
+            localStorage.setItem('auth_token', data.token);
+            localStorage.setItem('user', JSON.stringify(data.user));
+            
+            setUser(data.user);
+            setToken(data.token);
+
+            return { success: true };
+        } catch (error) {
+            return { success: false, error: error.message };
+        }
+    };
+
+    const logout = async () => {
+        if (token) {
+            try {
+                await fetch('/api/logout', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Accept': 'application/json',
+                    }
+                });
+            } catch (error) {
+                console.error('Logout error:', error);
+            }
         }
 
-    }, [])
-
-    // for now
-    useEffect(() => {
-        setTimeout(() => {
-            setIsLoading(false)
-        }, (2000))
-    })
-
-    const handleUserLogin = async (email, password) => {
-       
-        const response = await fetch('/api/login', {
-            method: "POST",
-            headers: {
-                'Content-type': 'application/json',
-                'Accept':  'application/json'
-            },
-            body: JSON.stringify({
-                email: email,
-                password: password
-            })
-        })
-
-        const data = await response.json()
-
-        if (!response.ok) {
-            throw new Error(data.message)
-        }
-
-        console.log(data)
-
-        localStorage.setItem('auth_token', data.token)
-        localStorage.setItem('user', JSON.stringify(data.user))
-
-        setIsLoading(false)
-        setIsAuthenticated(true)
-        
-        navigate('/')
-
-    }
+        // Clear everything
+        localStorage.removeItem('auth_token');
+        localStorage.removeItem('user');
+        setUser(null);
+        setToken(null);
+    };
 
     const value = {
 
         // state
-        isAuthenticated,
+        isAuthenticated: !!user && !!token,
         isLoading,
         user,
 
@@ -89,8 +154,10 @@ export const AuthProvider = ({ children }) => {
         setUser,
 
         // functions
-        handleUserLogin
-
+        login,
+        register,
+        logout,
+        
 
     };
 

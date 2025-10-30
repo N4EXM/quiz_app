@@ -27,6 +27,10 @@ class AuthController extends Controller
             ], 401);
         }
 
+        $token = $user->createToken('quiz-app-token')->plainTextToken;
+
+        $user->update(['last_login' => now()]);
+
         // For now, return simple success response
         // We'll add token authentication later
         return response()->json([
@@ -38,6 +42,7 @@ class AuthController extends Controller
                 'first_name' => $user->first_name,
                 'last_name' => $user->last_name,
             ],
+            'token' => $token,
             'message' => 'Login successful'
         ]);
     }
@@ -62,6 +67,8 @@ class AuthController extends Controller
             'is_active' => true,
         ]);
 
+        $token = $user->createToken('quiz-app-token')->plainTextToken;
+
         return response()->json([
             'success' => true,
             'user' => [
@@ -71,7 +78,29 @@ class AuthController extends Controller
                 'first_name' => $user->first_name,
                 'last_name' => $user->last_name,
             ],
+            'token' => $token, // ✅ Include token
             'message' => 'User registered successfully'
         ]);
     }
+
+    public function logout(Request $request) {
+
+        $request->user()->currentAccessToken()->delete();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Logged out successfully'
+        ]);
+
+    }
+
+    public function user(Request $request)
+    {
+        // ✅ Get authenticated user data
+        return response()->json([
+            'success' => true,
+            'user' => $request->user()
+        ]);
+    }
+
 }

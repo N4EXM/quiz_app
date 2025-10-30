@@ -9,7 +9,7 @@ import { useAuth } from '../context/AuthContext'
 const Login = () => {
 
   // context
-  const { setIsAuthenticated, setIsLoading, isLoading, setUser } = useAuth()
+  const { setIsLoading, isLoading, login} = useAuth()
 
   // toggles
   const [showPassword, setShowPassword] = useState(false)
@@ -18,53 +18,21 @@ const Login = () => {
   // state
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const [errorMessage, setErrorMessage] = useState("")
 
   const navigate = useNavigate()
 
   // functions
   const handleFormSubmit = async (e) => {
 
-    setIsLoading(true)
-
     e.preventDefault()
 
-    const response = await fetch('/api/login', {
-      method: "POST",
-      headers: {
-        'Content-type': 'application/json',
-        'Accept':  'application/json'
-      },
-      body: JSON.stringify({
-        email: email,
-        password: password
-      })
-    })
-
-    const data = await response.json()
-
-    if (!response.ok) {
-      throw new Error(data.message)
+    if (login(email,password).success === false) {
+      setErrorMessage(login.message)
     }
-
-    const user = {
-      profileImg: null,
-      first_name: data.user.first_name,
-      last_name: data.user.last_name,
-      email: data.user.email,
-      id: data.user.user_id,
-      username: data.user.username
+    else {
+      navigate('/')
     }
-
-    console.log(data)
-
-    setUser(user)
-    // localStorage.setItem('auth_token', data.token)
-    localStorage.setItem('user', JSON.stringify(user))
-
-    setIsLoading(false)
-    setIsAuthenticated(true)
-    
-    navigate('/')
 
   }
 
